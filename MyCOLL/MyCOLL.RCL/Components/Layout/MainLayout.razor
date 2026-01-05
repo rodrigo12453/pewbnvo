@@ -31,14 +31,13 @@
 </div>
 
 @code {
-    // Retirámos o "async Task" e metemos "void"
-    // Retirámos o "await" antes da chamada
-    private void Logout()
+    // CORREÇÃO: Voltamos a usar async Task e await
+    private async Task Logout()
     {
-        // Faz o logout sem esperar (porque o método é void)
-        ((CustomAuthStateProvider)AuthStateProvider).MarkUserAsLoggedOut();
+        // Precisamos do await porque o método na AuthProvider invoca o JavaScript
+        await ((CustomAuthStateProvider)AuthStateProvider).MarkUserAsLoggedOut();
 
-        // Volta à página inicial
-        Nav.NavigateTo("/");
+        // Redireciona para a página inicial garantindo que o estado foi limpo
+        Nav.NavigateTo("/", forceLoad: true);
     }
 }

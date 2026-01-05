@@ -1,41 +1,41 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\",
+  "WorkspaceRootPath": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{10F5A6CB-EDFE-405D-80C5-57BA5B089A81}|MyCOLL.RCL\\MyCOLL.RCL.csproj|c:\\users\\gaby_\\onedrive\\ambiente de trabalho\\tp_pweb\\mycoll\\mycoll.rcl\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{10F5A6CB-EDFE-405D-80C5-57BA5B089A81}|MyCOLL.RCL\\MyCOLL.RCL.csproj|c:\\users\\o caralho\\desktop\\cadeiras isec terceiro ano e tals\\pweb\\tp_pweb\\mycoll\\mycoll.rcl\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{10F5A6CB-EDFE-405D-80C5-57BA5B089A81}|MyCOLL.RCL\\MyCOLL.RCL.csproj|solutionrelative:mycoll.rcl\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FEC46185-438C-4D57-B467-F414801DC48C}|MyCOLL.Data\\MyCOLL.Data.csproj|c:\\users\\gaby_\\onedrive\\ambiente de trabalho\\tp_pweb\\mycoll\\mycoll.data\\models\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FEC46185-438C-4D57-B467-F414801DC48C}|MyCOLL.Data\\MyCOLL.Data.csproj|c:\\users\\o caralho\\desktop\\cadeiras isec terceiro ano e tals\\pweb\\tp_pweb\\mycoll\\mycoll.data\\models\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FEC46185-438C-4D57-B467-F414801DC48C}|MyCOLL.Data\\MyCOLL.Data.csproj|solutionrelative:mycoll.data\\models\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{10F5A6CB-EDFE-405D-80C5-57BA5B089A81}|MyCOLL.RCL\\MyCOLL.RCL.csproj|c:\\users\\gaby_\\onedrive\\ambiente de trabalho\\tp_pweb\\mycoll\\mycoll.rcl\\auth\\customauthstateprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{10F5A6CB-EDFE-405D-80C5-57BA5B089A81}|MyCOLL.RCL\\MyCOLL.RCL.csproj|c:\\users\\o caralho\\desktop\\cadeiras isec terceiro ano e tals\\pweb\\tp_pweb\\mycoll\\mycoll.rcl\\auth\\customauthstateprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{10F5A6CB-EDFE-405D-80C5-57BA5B089A81}|MyCOLL.RCL\\MyCOLL.RCL.csproj|solutionrelative:mycoll.rcl\\auth\\customauthstateprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39AA7ADE-CFE8-4C67-8028-F3AB5F0823D1}|MyCOLL.Gestao\\MyCOLL.Gestao.csproj|c:\\users\\gaby_\\onedrive\\ambiente de trabalho\\tp_pweb\\mycoll\\mycoll.gestao\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{39AA7ADE-CFE8-4C67-8028-F3AB5F0823D1}|MyCOLL.Gestao\\MyCOLL.Gestao.csproj|c:\\users\\o caralho\\desktop\\cadeiras isec terceiro ano e tals\\pweb\\tp_pweb\\mycoll\\mycoll.gestao\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{39AA7ADE-CFE8-4C67-8028-F3AB5F0823D1}|MyCOLL.Gestao\\MyCOLL.Gestao.csproj|solutionrelative:mycoll.gestao\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39AA7ADE-CFE8-4C67-8028-F3AB5F0823D1}|MyCOLL.Gestao\\MyCOLL.Gestao.csproj|c:\\users\\gaby_\\onedrive\\ambiente de trabalho\\tp_pweb\\mycoll\\mycoll.gestao\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{39AA7ADE-CFE8-4C67-8028-F3AB5F0823D1}|MyCOLL.Gestao\\MyCOLL.Gestao.csproj|c:\\users\\o caralho\\desktop\\cadeiras isec terceiro ano e tals\\pweb\\tp_pweb\\mycoll\\mycoll.gestao\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{39AA7ADE-CFE8-4C67-8028-F3AB5F0823D1}|MyCOLL.Gestao\\MyCOLL.Gestao.csproj|solutionrelative:mycoll.gestao\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D661490E-9ABA-4954-8E89-0AEE39356243}|MyCOLL.API\\MyCOLL.API.csproj|c:\\users\\gaby_\\onedrive\\ambiente de trabalho\\tp_pweb\\mycoll\\mycoll.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D661490E-9ABA-4954-8E89-0AEE39356243}|MyCOLL.API\\MyCOLL.API.csproj|c:\\users\\o caralho\\desktop\\cadeiras isec terceiro ano e tals\\pweb\\tp_pweb\\mycoll\\mycoll.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D661490E-9ABA-4954-8E89-0AEE39356243}|MyCOLL.API\\MyCOLL.API.csproj|solutionrelative:mycoll.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39AA7ADE-CFE8-4C67-8028-F3AB5F0823D1}|MyCOLL.Gestao\\MyCOLL.Gestao.csproj|c:\\users\\gaby_\\onedrive\\ambiente de trabalho\\tp_pweb\\mycoll\\mycoll.gestao\\mycoll.gestao.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{39AA7ADE-CFE8-4C67-8028-F3AB5F0823D1}|MyCOLL.Gestao\\MyCOLL.Gestao.csproj|c:\\users\\o caralho\\desktop\\cadeiras isec terceiro ano e tals\\pweb\\tp_pweb\\mycoll\\mycoll.gestao\\mycoll.gestao.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{39AA7ADE-CFE8-4C67-8028-F3AB5F0823D1}|MyCOLL.Gestao\\MyCOLL.Gestao.csproj|solutionrelative:mycoll.gestao\\mycoll.gestao.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6B2ADD21-EFC9-417E-B1F9-C97F25960BC5}|MyCOLL.Frontend\\MyCOLL.Frontend.csproj|c:\\users\\gaby_\\onedrive\\ambiente de trabalho\\tp_pweb\\mycoll\\mycoll.frontend\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{6B2ADD21-EFC9-417E-B1F9-C97F25960BC5}|MyCOLL.Frontend\\MyCOLL.Frontend.csproj|c:\\users\\o caralho\\desktop\\cadeiras isec terceiro ano e tals\\pweb\\tp_pweb\\mycoll\\mycoll.frontend\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{6B2ADD21-EFC9-417E-B1F9-C97F25960BC5}|MyCOLL.Frontend\\MyCOLL.Frontend.csproj|solutionrelative:mycoll.frontend\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6B2ADD21-EFC9-417E-B1F9-C97F25960BC5}|MyCOLL.Frontend\\MyCOLL.Frontend.csproj|c:\\users\\gaby_\\onedrive\\ambiente de trabalho\\tp_pweb\\mycoll\\mycoll.frontend\\components\\pages\\admin\\aprovarprodutos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{6B2ADD21-EFC9-417E-B1F9-C97F25960BC5}|MyCOLL.Frontend\\MyCOLL.Frontend.csproj|c:\\users\\o caralho\\desktop\\cadeiras isec terceiro ano e tals\\pweb\\tp_pweb\\mycoll\\mycoll.frontend\\components\\pages\\admin\\aprovarprodutos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{6B2ADD21-EFC9-417E-B1F9-C97F25960BC5}|MyCOLL.Frontend\\MyCOLL.Frontend.csproj|solutionrelative:mycoll.frontend\\components\\pages\\admin\\aprovarprodutos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
@@ -52,24 +52,23 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "categoria.cs",
-              "DocumentMoniker": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.Data\\Models\\categoria.cs",
+              "DocumentMoniker": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.Data\\Models\\categoria.cs",
               "RelativeDocumentMoniker": "MyCOLL.Data\\Models\\categoria.cs",
-              "ToolTip": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.Data\\Models\\categoria.cs",
+              "ToolTip": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.Data\\Models\\categoria.cs",
               "RelativeToolTip": "MyCOLL.Data\\Models\\categoria.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T15:10:35.43Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-05T15:10:35.43Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "NavMenu.razor",
-              "DocumentMoniker": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.RCL\\Components\\Layout\\NavMenu.razor",
+              "DocumentMoniker": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.RCL\\Components\\Layout\\NavMenu.razor",
               "RelativeDocumentMoniker": "MyCOLL.RCL\\Components\\Layout\\NavMenu.razor",
-              "ToolTip": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.RCL\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.RCL\\Components\\Layout\\NavMenu.razor",
               "RelativeToolTip": "MyCOLL.RCL\\Components\\Layout\\NavMenu.razor",
-              "ViewState": "AgIAACUAAAAAAAAAAAAmwEQAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAADwAAAAAAAAAAADwv0QAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-01-05T15:08:46.03Z",
               "EditorCaption": ""
@@ -78,92 +77,85 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "App.razor",
-              "DocumentMoniker": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.Gestao\\Components\\App.razor",
+              "DocumentMoniker": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.Gestao\\Components\\App.razor",
               "RelativeDocumentMoniker": "MyCOLL.Gestao\\Components\\App.razor",
-              "ToolTip": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.Gestao\\Components\\App.razor",
+              "ToolTip": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.Gestao\\Components\\App.razor",
               "RelativeToolTip": "MyCOLL.Gestao\\Components\\App.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAkwBYAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-01-05T14:43:46.081Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-05T14:43:46.081Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "CustomAuthStateProvider.cs",
-              "DocumentMoniker": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.RCL\\Auth\\CustomAuthStateProvider.cs",
+              "DocumentMoniker": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.RCL\\Auth\\CustomAuthStateProvider.cs",
               "RelativeDocumentMoniker": "MyCOLL.RCL\\Auth\\CustomAuthStateProvider.cs",
-              "ToolTip": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.RCL\\Auth\\CustomAuthStateProvider.cs",
+              "ToolTip": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.RCL\\Auth\\CustomAuthStateProvider.cs",
               "RelativeToolTip": "MyCOLL.RCL\\Auth\\CustomAuthStateProvider.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAqwCsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T14:33:49.674Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-05T14:33:49.674Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.API\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.API\\Program.cs",
               "RelativeDocumentMoniker": "MyCOLL.API\\Program.cs",
-              "ToolTip": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.API\\Program.cs",
+              "ToolTip": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.API\\Program.cs",
               "RelativeToolTip": "MyCOLL.API\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFwAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T14:17:58.416Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-05T14:17:58.416Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "MyCOLL.Gestao",
-              "DocumentMoniker": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.Gestao\\MyCOLL.Gestao.csproj",
+              "Title": "MyCOLL.Gestao.csproj",
+              "DocumentMoniker": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.Gestao\\MyCOLL.Gestao.csproj",
               "RelativeDocumentMoniker": "MyCOLL.Gestao\\MyCOLL.Gestao.csproj",
-              "ToolTip": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.Gestao\\MyCOLL.Gestao.csproj",
+              "ToolTip": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.Gestao\\MyCOLL.Gestao.csproj",
               "RelativeToolTip": "MyCOLL.Gestao\\MyCOLL.Gestao.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-01-05T13:55:36.61Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-05T13:55:36.61Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.Gestao\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.Gestao\\Program.cs",
               "RelativeDocumentMoniker": "MyCOLL.Gestao\\Program.cs",
-              "ToolTip": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.Gestao\\Program.cs",
+              "ToolTip": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.Gestao\\Program.cs",
               "RelativeToolTip": "MyCOLL.Gestao\\Program.cs",
               "ViewState": "AgIAAD8AAAAAAAAAAAAowFgAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T13:52:05.486Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-05T13:52:05.486Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
               "Title": "NavMenu.razor",
-              "DocumentMoniker": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.Frontend\\Components\\Layout\\NavMenu.razor",
+              "DocumentMoniker": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.Frontend\\Components\\Layout\\NavMenu.razor",
               "RelativeDocumentMoniker": "MyCOLL.Frontend\\Components\\Layout\\NavMenu.razor",
-              "ToolTip": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.Frontend\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.Frontend\\Components\\Layout\\NavMenu.razor",
               "RelativeToolTip": "MyCOLL.Frontend\\Components\\Layout\\NavMenu.razor",
               "ViewState": "AgIAAAUAAAAAAAAAAAAcwAwAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-01-05T13:18:51.64Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-05T13:18:51.64Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
               "Title": "AprovarProdutos.razor",
-              "DocumentMoniker": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.Frontend\\Components\\Pages\\Admin\\AprovarProdutos.razor",
+              "DocumentMoniker": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.Frontend\\Components\\Pages\\Admin\\AprovarProdutos.razor",
               "RelativeDocumentMoniker": "MyCOLL.Frontend\\Components\\Pages\\Admin\\AprovarProdutos.razor",
-              "ToolTip": "C:\\Users\\gaby_\\OneDrive\\Ambiente de Trabalho\\TP_PWEB\\MyCOLL\\MyCOLL.Frontend\\Components\\Pages\\Admin\\AprovarProdutos.razor",
+              "ToolTip": "C:\\Users\\o caralho\\Desktop\\CADEIRAS ISEC TERCEIRO ANO E TALS\\PWEB\\TP_PWEB\\MyCOLL\\MyCOLL.Frontend\\Components\\Pages\\Admin\\AprovarProdutos.razor",
               "RelativeToolTip": "MyCOLL.Frontend\\Components\\Pages\\Admin\\AprovarProdutos.razor",
               "ViewState": "AgIAAG8AAAAAAAAAAAAiwIcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-01-05T13:17:51.796Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-05T13:17:51.796Z"
             }
           ]
         }

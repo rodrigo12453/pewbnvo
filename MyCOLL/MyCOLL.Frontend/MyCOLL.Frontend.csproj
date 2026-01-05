@@ -69,4 +69,8 @@
       <ProjectReference Include="..\MyCOLL.RCL\MyCOLL.RCL.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Components\Pages\" />
+    </ItemGroup>
+
 </Project>

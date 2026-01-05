@@ -22,24 +22,21 @@ namespace MyCOLL.RCL.Auth
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var identity = new ClaimsIdentity();
-
             try
             {
-                // Agora que o prerender é false, isto vai funcionar sempre bem!
+                // O Blazor Server pode falhar aqui se a ligação SignalR não estiver pronta
                 var token = await _jsRuntime.InvokeAsync<string>("localStorage.getItem", "authToken");
-
                 if (!string.IsNullOrEmpty(token))
                 {
                     _jwtToken = token;
                     identity = new ClaimsIdentity(ParseClaimsFromJwt(token), "jwt");
-                    _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                    _http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
                 }
             }
             catch
             {
-                // Se não houver token ou o JS falhar, ele retorna a identidade vazia (não autenticado)
+                // Impede que a aplicação crasha se o browser ainda não responder
             }
-
             return new AuthenticationState(new ClaimsPrincipal(identity));
         }
 
@@ -53,8 +50,9 @@ namespace MyCOLL.RCL.Auth
         public async Task MarkUserAsLoggedOut()
         {
             _jwtToken = null;
-            // Limpa o token para o logout ser real
+            // O await aqui é crítico para o erro não acontecer
             await _jsRuntime.InvokeVoidAsync("localStorage.removeItem", "authToken");
+
             var authState = Task.FromResult(new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity())));
             NotifyAuthenticationStateChanged(authState);
         }

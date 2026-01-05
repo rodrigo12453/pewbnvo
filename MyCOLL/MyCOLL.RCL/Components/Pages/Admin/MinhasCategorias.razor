@@ -47,23 +47,36 @@ else
 @code {
     List<Categoria>? listaCategorias;
 
-    protected override async Task OnInitializedAsync()
+    // CORREÇÃO: Usar OnParametersSetAsync resolve o problema de precisar de F5
+    protected override async Task OnParametersSetAsync()
     {
         await CarregarCategorias();
     }
 
     async Task CarregarCategorias()
     {
-        listaCategorias = await Http.GetFromJsonAsync<List<Categoria>>("api/categorias");
+        try
+        {
+            listaCategorias = await Http.GetFromJsonAsync<List<Categoria>>("api/categorias");
+            StateHasChanged(); // Força a atualização visual da tabela
+        }
+        catch (Exception ex)
+        {
+            // Caso a API não responda ou falhe o Token
+            Console.WriteLine($"Erro ao carregar: {ex.Message}");
+        }
     }
 
     async Task Apagar(int id)
     {
-        bool confirmado = await JS.InvokeAsync<bool>("confirm", "Tens a certeza?");
+        bool confirmado = await JS.InvokeAsync<bool>("confirm", "Tens a certeza que queres apagar?");
         if (confirmado)
         {
-            await Http.DeleteAsync($"api/categorias/{id}");
-            await CarregarCategorias();
+            var res = await Http.DeleteAsync($"api/categorias/{id}");
+            if (res.IsSuccessStatusCode)
+            {
+                await CarregarCategorias();
+            }
         }
     }
 }

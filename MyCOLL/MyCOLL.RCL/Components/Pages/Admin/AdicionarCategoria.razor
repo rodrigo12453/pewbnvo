@@ -1,0 +1,45 @@
+﻿@page "/Admin/Categorias/Nova"
+@using MyCOLL.Data.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Administrador")]
+@inject HttpClient Http
+@inject NavigationManager Nav
+@inject IJSRuntime JS
+
+<h3>Nova Categoria</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="mb-3">
+            <label class="form-label">Nome da Categoria</label>
+            <input class="form-control" @bind="novaCategoria.Nome" placeholder="Ex: Equipamento, Suplementos..." />
+        </div>
+        <button class="btn btn-success" @onclick="Gravar">Gravar</button>
+        <button class="btn btn-secondary" @onclick='() => Nav.NavigateTo("/Admin/Categorias")'>Cancelar</button>
+    </div>
+</div>
+
+@code {
+    private Categoria novaCategoria = new Categoria();
+
+    private async Task Gravar()
+    {
+        if (string.IsNullOrWhiteSpace(novaCategoria.Nome))
+        {
+            await JS.InvokeVoidAsync("alert", "O nome é obrigatório!");
+            return;
+        }
+
+        // Envia para a API (isto faz com que "fique" na BD)
+        var response = await Http.PostAsJsonAsync("api/categorias", novaCategoria);
+
+        if (response.IsSuccessStatusCode)
+        {
+            Nav.NavigateTo("/Admin/Categorias");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("alert", "Erro ao gravar categoria na API.");
+        }
+    }
+}

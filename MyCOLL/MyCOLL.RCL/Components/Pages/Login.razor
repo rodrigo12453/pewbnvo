@@ -49,9 +49,9 @@
                 // 2. Notifica o estado de autenticação
                 ((CustomAuthStateProvider)AuthStateProvider).MarkUserAsAuthenticated(resultado.Token);
 
-                
-                Nav.NavigateTo("/");
-                //  - Admin não tem funcionalidades no frontend.
+
+                Nav.NavigateTo("/Admin/Categorias");
+
             }
             else
             {

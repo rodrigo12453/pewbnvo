@@ -1,0 +1,136 @@
+﻿@page "/Admin/Produtos/Pendentes"
+@using MyCOLL.Data
+@using MyCOLL.Data.Models
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Administrador,Funcionario")]
+@inject ApplicationDbContext Context
+@inject NavigationManager Nav
+@inject IJSRuntime JS
+
+<div class="container mt-4">
+    <h2 class="mb-4">🛡️ Moderação de Produtos</h2>
+
+    @if (produtosPendentes == null)
+    {
+        <p><em>A carregar...</em></p>
+    }
+    else if (!produtosPendentes.Any())
+    {
+        <div class="alert alert-success">
+            <i class="bi bi-check-circle"></i> Não existem produtos pendentes de aprovação. Bom trabalho!
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var p in produtosPendentes)
+            {
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm border-warning">
+                        <div class="card-header bg-warning bg-opacity-10 d-flex justify-content-between">
+                            <strong>@p.Nome</strong>
+                            <span class="badge bg-warning text-dark">Pendente</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                                    @if (!string.IsNullOrEmpty(p.ImagemUrl))
+                                    {
+                                        <img src="@p.ImagemUrl" class="img-fluid rounded" style="max-height: 100px;" />
+                                    }
+                                    else
+                                    {
+                                        <div class="text-center p-3 bg-light rounded">Sem Imagem</div>
+                                    }
+                                </div>
+                                <div class="col-8">
+                                    <p class="small text-muted mb-1">Fornecedor: <strong>@p.Fornecedor?.UserName</strong></p>
+                                    <p class="small text-muted mb-1">Categoria: @p.Categoria?.Nome</p>
+                                    <p class="mb-2">@p.Descricao</p>
+
+                                    <hr />
+
+                                    <div class="bg-light p-2 rounded">
+                                        <label class="form-label small fw-bold">Definição de Preço Final:</label>
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span>Preço Base (Fornecedor):</span>
+                                            <span class="fw-bold">@p.PrecoBase.ToString("C")</span>
+                                        </div>
+
+                                        <div class="input-group mb-2">
+                                            <span class="input-group-text">Preço Venda (€)</span>
+                                            <input type="number" step="0.01" class="form-control"
+                                                   @bind="p.PrecoVenda" />
+                                        </div>
+
+                                        <div class="d-flex justify-content-end gap-2">
+                                            <button class="btn btn-outline-danger btn-sm" @onclick="() => Rejeitar(p)">
+                                                Rejeitar
+                                            </button>
+                                            <button class="btn btn-success btn-sm" @onclick="() => Aprovar(p)">
+                                                <i class="bi bi-check-lg"></i> Aprovar e Publicar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    private List<Produto>? produtosPendentes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CarregarPendentes();
+    }
+
+    private async Task CarregarPendentes()
+    {
+        // 1. Busca apenas os produtos com Estado "Pendente"
+        // Inclui Fornecedor e Categoria para mostrarmos os nomes
+        produtosPendentes = await Context.Produtos
+            .Where(p => p.Estado == "Pendente")
+            .Include(p => p.Fornecedor)
+            .Include(p => p.Categoria)
+            .ToListAsync();
+    }
+
+    private async Task Aprovar(Produto p)
+    {
+        // Validação básica
+        if (p.PrecoVenda < p.PrecoBase)
+        {
+            await JS.InvokeVoidAsync("alert", "Atenção: O Preço de Venda é inferior ao Preço Base! A loja vai perder dinheiro.");
+            return;
+        }
+
+        // 2. Muda o estado para Ativo
+        p.Estado = "Ativo";
+
+        // 3. Guarda na BD
+        Context.Produtos.Update(p);
+        await Context.SaveChangesAsync();
+
+        // 4. Atualiza a lista
+        produtosPendentes.Remove(p);
+        await JS.InvokeVoidAsync("alert", $"Produto '{p.Nome}' aprovado com sucesso!");
+    }
+
+    private async Task Rejeitar(Produto p)
+    {
+        bool confirmar = await JS.InvokeAsync<bool>("confirm", "Tens a certeza que queres rejeitar (apagar) este produto?");
+        if (confirmar)
+        {
+            Context.Produtos.Remove(p);
+            await Context.SaveChangesAsync();
+            produtosPendentes.Remove(p);
+        }
+    }
+}
