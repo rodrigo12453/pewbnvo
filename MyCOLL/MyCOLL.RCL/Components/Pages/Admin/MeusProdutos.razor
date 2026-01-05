@@ -1,0 +1,80 @@
+﻿@page "/Admin/Produtos"
+@using MyCOLL.Data.Models;
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject HttpClient Http
+@inject NavigationManager Nav
+@inject IJSRuntime JS
+
+<h3>Gestão de Produtos</h3>
+
+<button class="btn btn-success mb-3" @onclick='() => Nav.NavigateTo("/Admin/Produtos/Novo")'>
+    + Novo Produto
+</button>
+
+@if (listaProdutos == null)
+{
+    <p>A carregar...</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in listaProdutos)
+            {
+                <tr>
+                    <td>@p.Nome</td>
+                    <td>@p.PrecoVenda.ToString("C")</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary me-1" @onclick='() => Nav.NavigateTo($"/Admin/Produtos/Editar/{p.Id}")'>
+                            <i class="bi bi-pencil"></i> Editar
+                        </button>
+                        <button class="btn btn-sm btn-danger" @onclick="() => Apagar(p.Id)">
+                            Apagar
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    List<Produto>? listaProdutos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CarregarProdutos();
+    }
+
+    async Task CarregarProdutos()
+    {
+        try
+        {
+            listaProdutos = await Http.GetFromJsonAsync<List<Produto>>("api/produtos");
+        }
+        catch
+        {
+            listaProdutos = new List<Produto>();
+        }
+    }
+
+    async Task Apagar(int id)
+    {
+        // Correção: Usa confirmação JavaScript (funciona em Web e Mobile)
+        bool confirmado = await JS.InvokeAsync<bool>("confirm", "Tens a certeza que queres apagar este produto?");
+
+        if (confirmado)
+        {
+            await Http.DeleteAsync($"api/produtos/{id}");
+            await CarregarProdutos(); // Recarrega a lista
+        }
+    }
+}

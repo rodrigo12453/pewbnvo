@@ -1,0 +1,67 @@
+﻿@page "/Admin/Categorias/Nova"
+@page "/Admin/Categorias/Editar/{Id:int}"
+@using MyCOLL.Data.Models;
+@attribute [Authorize]
+@inject HttpClient Http
+@inject NavigationManager Nav
+@inject IJSRuntime JS
+
+<h3>@(Id == 0 ? "Criar Categoria" : "Editar Categoria")</h3>
+
+<EditForm Model="categoria" OnValidSubmit="Gravar">
+    <DataAnnotationsValidator />
+
+    <div class="mb-3">
+        <label>Nome da Categoria</label>
+        <InputText @bind-Value="categoria.Nome" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Gravar</button>
+    <button type="button" class="btn btn-secondary" @onclick='() => Nav.NavigateTo("/Admin/Categorias")'>Cancelar</button>
+</EditForm>
+
+@code {
+    [Parameter] public int Id { get; set; }
+    Categoria categoria = new Categoria();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id != 0)
+        {
+            try
+            {
+                categoria = await Http.GetFromJsonAsync<Categoria>($"api/categorias/{Id}");
+            }
+            catch { }
+        }
+    }
+
+    async Task Gravar()
+    {
+        // 1. Buscar Token
+        var token = await JS.InvokeAsync<string>("localStorage.getItem", "authToken");
+
+        // 2. Colocar no cabeçalho
+        if (!string.IsNullOrEmpty(token))
+        {
+            Http.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        }
+
+        HttpResponseMessage response;
+        if (Id == 0)
+            response = await Http.PostAsJsonAsync("api/categorias", categoria);
+        else
+            response = await Http.PutAsJsonAsync($"api/categorias/{Id}", categoria);
+
+        if (response.IsSuccessStatusCode)
+        {
+            Nav.NavigateTo("/Admin/Categorias");
+        }
+        else
+        {
+            var erro = await response.Content.ReadAsStringAsync();
+            await JS.InvokeVoidAsync("alert", $"Erro da API: {erro}");
+        }
+    }
+}

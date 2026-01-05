@@ -1,0 +1,69 @@
+﻿@page "/Admin/Categorias"
+@using MyCOLL.Data
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject HttpClient Http
+@inject NavigationManager Nav
+@inject IJSRuntime JS
+
+<h3>Gestão de Categorias</h3>
+
+<button class="btn btn-success mb-3" @onclick='() => Nav.NavigateTo("/Admin/Categorias/Nova")'>
+    + Nova Categoria
+</button>
+
+@if (listaCategorias == null)
+{
+    <p>A carregar...</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in listaCategorias)
+            {
+                <tr>
+                    <td>@c.Nome</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary me-1" @onclick='() => Nav.NavigateTo($"/Admin/Categorias/Editar/{c.Id}")'>
+                            Editar
+                        </button>
+                        <button class="btn btn-sm btn-danger" @onclick="() => Apagar(c.Id)">
+                            Apagar
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    List<Categoria>? listaCategorias;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CarregarCategorias();
+    }
+
+    async Task CarregarCategorias()
+    {
+        listaCategorias = await Http.GetFromJsonAsync<List<Categoria>>("api/categorias");
+    }
+
+    async Task Apagar(int id)
+    {
+        bool confirmado = await JS.InvokeAsync<bool>("confirm", "Tens a certeza?");
+        if (confirmado)
+        {
+            await Http.DeleteAsync($"api/categorias/{id}");
+            await CarregarCategorias();
+        }
+    }
+}

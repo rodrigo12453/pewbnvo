@@ -1,0 +1,44 @@
+﻿@inherits LayoutComponentBase
+@using Microsoft.AspNetCore.Components.Authorization
+@using MyCOLL.RCL.Auth
+@inject NavigationManager Nav
+@inject AuthenticationStateProvider AuthStateProvider
+
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4 auth">
+            <AuthorizeView>
+                <Authorized>
+                    <span class="me-3">Olá, <strong>@context.User.Identity?.Name</strong>! 👋</span>
+                    <button class="btn btn-link" @onclick="Logout">Sair</button>
+                </Authorized>
+                <NotAuthorized>
+                    <a href="Account/Register" class="me-3">Registar</a>
+                    <a href="Account/Login">Login</a>
+                </NotAuthorized>
+            </AuthorizeView>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    // Retirámos o "async Task" e metemos "void"
+    // Retirámos o "await" antes da chamada
+    private void Logout()
+    {
+        // Faz o logout sem esperar (porque o método é void)
+        ((CustomAuthStateProvider)AuthStateProvider).MarkUserAsLoggedOut();
+
+        // Volta à página inicial
+        Nav.NavigateTo("/");
+    }
+}

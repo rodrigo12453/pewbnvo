@@ -1,0 +1,137 @@
+﻿@page "/Admin/Produtos/Novo"
+@page "/Admin/Produtos/Editar/{Id:int}"
+@using MyCOLL.Data;
+@attribute [Authorize]
+@inject HttpClient Http
+@inject NavigationManager Nav
+@inject IJSRuntime JS
+
+<h3>@(Id == 0 ? "Criar Produto" : "Editar Produto")</h3>
+
+<EditForm Model="produto" OnValidSubmit="Gravar">
+    <DataAnnotationsValidator />
+
+    <div class="mb-3">
+        <label>Nome do Produto</label>
+        <InputText @bind-Value="produto.Nome" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Descrição</label>
+        <InputTextArea @bind-Value="produto.Descricao" class="form-control" />
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label>Preço de Venda (€)</label>
+            <InputNumber @bind-Value="produto.PrecoVenda" class="form-control" />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Stock Disponível</label>
+            <InputNumber @bind-Value="produto.Stock" class="form-control" />
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label>Imagem do Produto</label>
+
+        <InputFile OnChange="CarregarImagem" class="form-control" accept=".jpg,.jpeg,.png" />
+
+        @if (!string.IsNullOrEmpty(produto.ImagemUrl))
+        {
+            <div class="mt-2">
+                <p>Imagem atual:</p>
+                <img src="@produto.ImagemUrl" alt="Pré-visualização" style="height: 150px; border: 1px solid #ccc; border-radius: 5px;" />
+            </div>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label>Categoria</label>
+        <InputSelect @bind-Value="produto.CategoriaId" class="form-control">
+            <option value="">-- Seleciona uma Categoria --</option>
+            @if (listaCategorias != null)
+            {
+                foreach (var cat in listaCategorias)
+                {
+                    <option value="@cat.Id">@cat.Nome</option>
+                }
+            }
+        </InputSelect>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Gravar</button>
+    <button type="button" class="btn btn-secondary" @onclick='() => Nav.NavigateTo("/Admin/Produtos")'>Cancelar</button>
+</EditForm>
+
+@code {
+    [Parameter] public int Id { get; set; }
+    Produto produto = new Produto();
+    List<Categoria>? listaCategorias;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // CORREÇÃO: Carregar as categorias, senão o dropdown fica vazio!
+        try
+        {
+            listaCategorias = await Http.GetFromJsonAsync<List<Categoria>>("api/categorias");
+        }
+        catch { /* Ignora se falhar */ }
+
+        if (Id != 0) // Modo Edição
+        {
+            produto = await Http.GetFromJsonAsync<Produto>($"api/produtos/{Id}");
+        }
+    }
+
+    // --- NOVO MÉTODO PARA ENVIAR IMAGEM ---
+    private async Task CarregarImagem(InputFileChangeEventArgs e)
+    {
+        var ficheiro = e.File;
+        if (ficheiro == null) return;
+
+        // Limite de 5MB
+        long maxTamanho = 1024 * 1024 * 5;
+
+        try
+        {
+            var content = new MultipartFormDataContent();
+
+            // Lê o ficheiro
+            var fileContent = new StreamContent(ficheiro.OpenReadStream(maxTamanho));
+            fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(ficheiro.ContentType);
+
+            content.Add(fileContent, "ficheiro", ficheiro.Name);
+
+            // Envia para a API
+            var resposta = await Http.PostAsync("api/produtos/upload", content);
+
+            if (resposta.IsSuccessStatusCode)
+            {
+                var resultado = await resposta.Content.ReadFromJsonAsync<UploadResponse>();
+                produto.ImagemUrl = resultado!.Url; // Guarda o URL recebido
+            }
+            else
+            {
+                await JS.InvokeVoidAsync("alert", "Erro ao carregar imagem.");
+            }
+        }
+        catch (Exception ex)
+        {
+            await JS.InvokeVoidAsync("alert", "Erro: " + ex.Message);
+        }
+    }
+
+    async Task Gravar()
+    {
+        if (Id == 0)
+            await Http.PostAsJsonAsync("api/produtos", produto);
+        else
+            await Http.PutAsJsonAsync($"api/produtos/{Id}", produto);
+
+        Nav.NavigateTo("/Admin/Produtos");
+    }
+
+    // Classe simples para ler a resposta JSON da API
+    class UploadResponse { public string Url { get; set; } = ""; }
+}

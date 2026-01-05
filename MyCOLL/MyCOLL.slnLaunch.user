@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "Novo Perfil",
+    "Projects": [
+      {
+        "Path": "MyCOLL.API\\MyCOLL.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "MyCOLL.Frontend\\MyCOLL.Frontend.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "MyCOLL.Gestao\\MyCOLL.Gestao.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

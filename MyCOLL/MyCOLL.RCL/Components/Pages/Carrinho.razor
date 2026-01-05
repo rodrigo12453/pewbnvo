@@ -1,0 +1,155 @@
+﻿@page "/Carrinho"
+@using MyCOLL.RCL.Services
+@using MyCOLL.RCL
+@using Microsoft.AspNetCore.Authorization
+@using MyCOLL.Data.Models;
+@inject CarrinhoService CarrinhoSvc
+@inject HttpClient Http
+@inject NavigationManager Nav
+@inject IJSRuntime JS
+@implements IDisposable
+
+<h3>O Meu Carrinho</h3>
+
+@if (!CarrinhoSvc.ObterItens().Any())
+{
+    <div class="alert alert-info">O carrinho está vazio.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Produto</th>
+                    <th>Preço Unit.</th>
+                    <th class="text-center">Quantidade</th>
+                    <th>Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in CarrinhoSvc.ObterItens())
+                {
+                    <tr>
+                        <td>
+                            <strong>@item.Produto.Nome</strong>
+                        </td>
+                        <td>@item.Produto.PrecoVenda.ToString("C")</td>
+
+                        <td class="text-center">
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-outline-secondary btn-sm"
+                                        @onclick="() => Diminuir(item.Produto)">
+                                    <i class="bi bi-dash"></i> -
+                                </button>
+
+                                <span class="btn btn-outline-secondary btn-sm disabled text-dark border-secondary">
+                                    @item.Quantidade
+                                </span>
+
+                                <button class="btn btn-outline-secondary btn-sm"
+                                        @onclick="() => Aumentar(item.Produto)">
+                                    + <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                        </td>
+
+                        <td>
+                            @((item.Produto.PrecoVenda * item.Quantidade).ToString("C"))
+                        </td>
+
+                        <td>
+                            <button class="btn btn-danger btn-sm"
+                                    @onclick="() => Remover(item.Produto)"
+                                    title="Remover do carrinho">
+                                <i class="bi bi-trash"></i> Remover
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-3 p-4 bg-light border rounded shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4>Total a Pagar:</h4>
+            <h3 class="text-primary">@CarrinhoSvc.ObterTotal().ToString("C")</h3>
+        </div>
+
+        <AuthorizeView>
+            <Authorized>
+                <button class="btn btn-success btn-lg w-100" @onclick="FinalizarCompra">
+                    Finalizar Compra <i class="bi bi-check-circle"></i>
+                </button>
+            </Authorized>
+            <NotAuthorized>
+                <div class="alert alert-warning d-flex align-items-center" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    <div>
+                        Tens de fazer <a href="Account/Login" class="alert-link">Login</a> para finalizar a compra.
+                    </div>
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
+    </div>
+}
+
+@code {
+    // Subscrever ao evento para garantir que a UI atualiza se o carrinho mudar externamente
+    protected override void OnInitialized()
+    {
+        CarrinhoSvc.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        CarrinhoSvc.OnChange -= StateHasChanged;
+    }
+
+    // Métodos auxiliares para chamar o serviço e forçar refresh visual
+    void Aumentar(Produto p) => CarrinhoSvc.AumentarQuantidade(p);
+    void Diminuir(Produto p) => CarrinhoSvc.DiminuirQuantidade(p);
+    void Remover(Produto p) => CarrinhoSvc.RemoverItem(p);
+
+    async Task FinalizarCompra()
+    {
+        var itensCarrinho = CarrinhoSvc.ObterItens();
+
+        // Cria o DTO de Encomenda
+        var encomenda = new EncomendaDto
+        {
+            Total = CarrinhoSvc.ObterTotal(),
+            // AQUI ESTAVA O ERRO CRÍTICO: Agora usamos a quantidade real do item
+            Itens = itensCarrinho.Select(i => new ItemEncomendaDto
+            {
+                ProdutoId = i.Produto.Id,
+                Quantidade = i.Quantidade,      // <-- Agora envia a quantidade certa!
+                PrecoUnitario = i.Produto.PrecoVenda
+            }).ToList()
+        };
+
+        try
+        {
+            var resposta = await Http.PostAsJsonAsync("api/encomendas", encomenda);
+
+            if (resposta.IsSuccessStatusCode)
+            {
+                CarrinhoSvc.LimparCarrinho();
+                await JS.InvokeVoidAsync("alert", "Sucesso! Encomenda registada. 🎉");
+                Nav.NavigateTo("/");
+            }
+            else
+            {
+                // É boa prática mostrar o erro que veio da API se possível, ou msg genérica
+                await JS.InvokeVoidAsync("alert", "Erro ao processar encomenda. Tenta novamente.");
+            }
+        }
+        catch (Exception ex)
+        {
+            // Captura erros de rede (ex: API desligada)
+            await JS.InvokeVoidAsync("alert", $"Erro de comunicação: {ex.Message}");
+        }
+    }
+}

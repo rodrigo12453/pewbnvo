@@ -1,0 +1,66 @@
+﻿@page "/Account/Login"
+@using MyCOLL.RCL.Auth
+@using MyCOLL.RCL
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+@inject HttpClient Http
+@inject NavigationManager Nav
+@inject AuthenticationStateProvider AuthStateProvider
+@inject IJSRuntime JS
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow p-4" style="width: 400px; border-top: 5px solid #0dcaf0;">
+        <h3 class="text-center mb-3">Entrar no MyCOLL</h3>
+
+        <div class="mb-3">
+            <label>Email</label>
+            <input @bind="loginModel.Email" class="form-control" placeholder="exemplo@email.com" />
+        </div>
+        <div class="mb-3">
+            <label>Password</label>
+            <input type="password" @bind="loginModel.Password" class="form-control" placeholder="******" />
+        </div>
+
+        <button class="btn btn-info w-100 text-white" @onclick="FazerLogin">Entrar</button>
+
+        <p class="mt-3 text-center">
+            Ainda não tens conta? <a href="Account/Register">Regista-te aqui</a>
+        </p>
+    </div>
+</div>
+
+@code {
+    private LoginDto loginModel = new LoginDto();
+
+    private async Task FazerLogin()
+    {
+        try
+        {
+            // CORRETO: Frontend usa API para autenticação 
+            var response = await Http.PostAsJsonAsync("api/auth/login", loginModel);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var resultado = await response.Content.ReadFromJsonAsync<LoginResponse>();
+
+                // 1. Guarda o Token JWT (Obrigatório JWT na API 
+                await JS.InvokeVoidAsync("localStorage.setItem", "authToken", resultado!.Token);
+
+                // 2. Notifica o estado de autenticação
+                ((CustomAuthStateProvider)AuthStateProvider).MarkUserAsAuthenticated(resultado.Token);
+
+                
+                Nav.NavigateTo("/");
+                //  - Admin não tem funcionalidades no frontend.
+            }
+            else
+            {
+                await JS.InvokeVoidAsync("alert", "Credenciais inválidas.");
+            }
+        }
+        catch (Exception ex)
+        {
+            await JS.InvokeVoidAsync("alert", "Erro de ligação à API: " + ex.Message);
+        }
+    }
+}

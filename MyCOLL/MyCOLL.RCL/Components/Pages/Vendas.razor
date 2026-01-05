@@ -1,0 +1,81 @@
+﻿@page "/vendas"
+@using Microsoft.EntityFrameworkCore
+@using MyCOLL.Data
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin")]
+@inject ApplicationDbContext Context
+
+
+<PageTitle>Histórico de Vendas</PageTitle>
+
+<div class="container">
+    <h1 class="mb-4">📦 Encomendas Recebidas</h1>
+
+    @if (vendas == null)
+    {
+        <p><em>A carregar vendas...</em></p>
+    }
+    else if (!vendas.Any())
+    {
+        <div class="alert alert-info">Ainda não há vendas registadas.</div>
+    }
+    else
+    {
+        <table class="table table-striped table-hover shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>#ID</th>
+                    <th>Data</th>
+                    <th>Cliente</th>
+                    <th>Total</th>
+                    <th>Produtos</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var venda in vendas)
+                {
+                    <tr>
+                        <td>@venda.Id</td>
+                        <td>@venda.DataVenda.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>
+                            @if (venda.Cliente != null)
+                            {
+                                <span class="badge bg-primary">@venda.Cliente.UserName</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Visitante Anónimo</span>
+                            }
+                        </td>
+                        <td class="fw-bold text-success">@venda.Total.ToString("C")</td>
+                        <td>
+                            <ul class="list-unstyled mb-0 small">
+                                @foreach (var detalhe in venda.Detalhes)
+                                {
+                                    <li>
+                                        @detalhe.Quantidade x <strong>@detalhe.Produto.Nome</strong>
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+@code {
+    private List<Venda>? vendas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Vai buscar as vendas, incluindo os dados do Cliente e os Produtos comprados
+        vendas = await Context.Vendas
+            .Include(v => v.Cliente)
+            .Include(v => v.Detalhes)
+                .ThenInclude(d => d.Produto)
+            .OrderByDescending(v => v.DataVenda) // As mais recentes primeiro
+            .ToListAsync();
+    }
+}
